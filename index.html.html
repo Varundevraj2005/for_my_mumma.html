@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff1f5">
+<title>For My Mumma ❤️</title>
+<style>
+:root{
+  --pink:#f7a8bd;--rose:#e85b83;--deep:#9e3158;--ink:#573746;
+  --paper:#fffaf9;--line:#f5d6df;--gold:#e7b96e;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;overflow-x:hidden;color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  background:
+    radial-gradient(ellipse at 12% 8%,rgba(255,195,211,.55),transparent 32%),
+    radial-gradient(ellipse at 90% 35%,rgba(255,224,205,.5),transparent 30%),
+    linear-gradient(135deg,#fff9f8,#fff0f4 55%,#fffaf2);
+}
+.floating-hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.float-heart{position:absolute;bottom:-50px;color:#ee8eaa;opacity:0;animation:floatUp linear infinite;text-shadow:0 4px 14px #d94e7833}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.55}85%{opacity:.4}100%{transform:translateY(-115vh) rotate(35deg);opacity:0}}
+main{position:relative;z-index:1;width:min(940px,calc(100% - 30px));margin:auto;padding:30px 0 65px}
+.hero{text-align:center;padding:58px 12px 35px}
+.eyebrow,.kicker{font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:3px;font-size:.72rem;font-weight:bold;color:var(--rose)}
+h1{font-size:clamp(2.6rem,8vw,5.2rem);line-height:1.08;color:var(--deep);margin:18px 0 12px}
+h1 span{color:#d76c8b}
+.hero p{max-width:620px;margin:auto;color:#926879;font:1rem/1.8 Arial,sans-serif}
+.panel,.plea{
+  background:rgba(255,255,255,.88);border:1px solid white;border-radius:26px;
+  box-shadow:0 16px 48px rgba(137,55,83,.10);padding:clamp(22px,5vw,42px);
+  margin:22px 0;backdrop-filter:blur(8px)
+}
+.letter{position:relative;overflow:hidden}
+.letter:after{content:"♥";position:absolute;right:22px;top:4px;font-size:5rem;color:#fbe5eb;transform:rotate(16deg)}
+.letter>*{position:relative;z-index:1}
+h2{font-size:clamp(1.7rem,5vw,2.45rem);color:var(--deep);margin:12px 0 18px}
+.letter p,.plea p{font:1rem/1.95 Arial,sans-serif;color:#704d5b}
+.signature{font-size:1.35rem;color:var(--deep);line-height:1.6;margin-top:25px}
+.surprise-section{text-align:center}
+.btn{
+  border:0;border-radius:999px;padding:15px 25px;margin:8px 4px;cursor:pointer;
+  color:white;background:linear-gradient(135deg,#f38da8,#c94370);
+  font:bold .95rem Arial,sans-serif;box-shadow:0 9px 24px #d94e7838;
+  transition:transform .2s,box-shadow .2s
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 13px 28px #d94e7855}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.hint{font: .9rem/1.7 Arial,sans-serif;color:#9b7886}
+.surprise{display:none;margin:22px auto 0;padding:25px;border-radius:22px;background:linear-gradient(135deg,#fff0f5,#fff8e9);border:1px solid var(--line)}
+.surprise.show{display:block;animation:pop .65s ease both}
+.surprise .big{font-size:3rem}
+.surprise h3{font-size:1.7rem;color:var(--deep);margin:8px}
+.surprise p{font:1rem/1.8 Arial,sans-serif}
+@keyframes pop{0%{opacity:0;transform:scale(.75)}75%{transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
+.love-section{text-align:center}
+.love-section>p{font:1rem/1.7 Arial,sans-serif;color:#926879}
+.stage-title{font-size:1.5rem;color:var(--deep);margin:26px 0 12px}
+.message-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:15px 0 24px}
+.tile{
+  min-width:0;padding:12px 6px;border:1px solid #f4d8e0;border-radius:12px;
+  background:linear-gradient(135deg,#fff2f6,#fff);color:#b63e68;
+  font:bold clamp(.72rem,2.3vw,.92rem) Arial,sans-serif;
+  box-shadow:0 4px 12px #a92e590b;overflow-wrap:anywhere;
+  animation:tileIn .35s ease both
+}
+.tile:nth-child(4n){background:linear-gradient(135deg,#fff8ed,#fff)}
+@keyframes tileIn{from{opacity:0;transform:translateY(7px) scale(.98)}to{opacity:1;transform:none}}
+.grid-note{font: .83rem/1.6 Arial,sans-serif;color:#a17b89}
+#loadSentinel{height:24px}
+.plea{text-align:center;background:linear-gradient(135deg,#fff0f5,#fff9ef);border:1px solid #f5d6df}
+.plea h3{font-size:1.55rem;color:var(--deep);margin:0 0 12px}
+.footer{text-align:center;color:#b17f91;font: .82rem Arial,sans-serif;padding:20px 0}
+.heart-pop{position:fixed;z-index:9;pointer-events:none;font-size:23px;animation:burst 1.5s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--x),var(--y)) rotate(300deg) scale(.2);opacity:0}}
+@media(min-width:620px){.message-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
+<main>
+  <header class="hero">
+    <div class="eyebrow">A little page, with a whole lot of love</div>
+    <h1>To My Mumma<br><span>My Forever Love</span> ❤️</h1>
+    <p>For the woman who means more to me than words can ever explain. This little surprise comes straight from your husband's heart. 💌</p>
+  </header>
+
+  <section class="panel letter">
+    <div class="kicker">First, from my heart</div>
+    <h2>My dearest Mumma, my Bangaraaa…</h2>
+    <p>I'm truly sorry for today, my love. You were waiting eagerly to talk to me, and I didn't respond to you the way you deserved. I know that must have hurt, and I hate that my silence made you feel unimportant. You were reaching out to me, and I should have been there with care, attention and love.</p>
+    <p>I don't want to make excuses. I take responsibility for not being present and for not giving your words the attention they deserved. You are my wife, my best friend, my comfort and my favourite person. You should never have to wonder whether you matter to me. You do — more than I can put into words.</p>
+    <p>I'm sorry, Mummy. I can't rewind today, but I can do better from this moment. I want to listen properly, make time for you, and show you through my actions that your feelings matter to me. I may not be perfect, but I never want to stop learning how to love you better.</p>
+    <p>Whenever you are ready, I want to hear everything you wanted to tell me. No rushing, no distractions — just me, listening to my favourite person. I love you endlessly, my wife. ❤️</p>
+    <div class="signature">Forever yours,<br>Your Husband ❤️</div>
+  </section>
+
+  <section class="panel surprise-section">
+    <div class="kicker">A little surprise, just for you</div>
+    <h2>Can I make you smile, my love? 💗</h2>
+    <p class="hint">I saved a little shower of hearts for you. Tap below, Mumma. 😘</p>
+    <button class="btn" id="surpriseBtn" type="button">Click here for your surprise 💝</button>
+    <div class="surprise" id="surprise">
+      <div class="big">💖🌹💞</div>
+      <h3>You have my whole heart!</h3>
+      <p>One heart, one home, one forever — you and me, Mumma. I choose you, today and every day. 😘</p>
+      <button class="btn" id="moreHearts" type="button">Send more love ✨</button>
+    </div>
+  </section>
+
+  <section class="panel love-section">
+    <div class="kicker">As many times as you need to hear it</div>
+    <h2>My sorry has no end, and neither does my love. ❤️</h2>
+    <p>First, a million little apologies. Then five million little reminders of how much I love you. Keep scrolling — the little message tiles will continue appearing in the grids. ♾️</p>
+
+    <h3 class="stage-title">I'm sorry, Mumma ❤️</h3>
+    <div class="message-grid" id="sorryGrid" aria-label="Apology messages"></div>
+    <p class="grid-note">And now, all the love in my heart…</p>
+
+    <h3 class="stage-title">I love you, my wife 💗</h3>
+    <div class="message-grid" id="loveGrid" aria-label="Love messages"></div>
+    <div id="loadSentinel" aria-hidden="true"></div>
+    <p class="grid-note" id="scrollHint">Keep scrolling, my Bangaraaa. More love is on its way. 💞</p>
+    <button class="btn" id="moreBtn" type="button">Show me more love 💕</button>
+  </section>
+
+  <section class="plea">
+    <h3>One small request, my wife… 🥺❤️</h3>
+    <p>Mumma, please don't think that one careless moment can ever change how deeply I love you. I know I should have responded with warmth when you needed me, and I'm genuinely sorry. I am asking for a chance to make it right — not just with sweet words on a page, but by being more thoughtful, more present and more attentive every day. You are my Bangara, my peace, my happiness and my forever. When your heart feels ready, please let your kanna come close, hold your hand and make you smile again. I love you, my wife. 😘😘</p>
+  </section>
+  <div class="footer">Made with all my love, just for you. ♡</div>
+</main>
+<script>
+(() => {
+  "use strict";
+  const hearts = document.getElementById("floatingHearts");
+  for (let i = 0; i < 24; i++) {
+    const h = document.createElement("span");
+    h.className = "float-heart";
+    h.textContent = ["♥", "♡", "❤", "✦"][i % 4];
+    h.style.left = (Math.random() * 100) + "%";
+    h.style.animationDuration = (9 + Math.random() * 12) + "s";
+    h.style.animationDelay = (-Math.random() * 18) + "s";
+    h.style.fontSize = (14 + Math.random() * 22) + "px";
+    hearts.appendChild(h);
+  }
+
+  const sorryGrid = document.getElementById("sorryGrid");
+  const loveGrid = document.getElementById("loveGrid");
+  const sorryLimit = 1000000;
+  const loveLimit = 5000000;
+  const batchSize = 40;
+  let sorryCreated = 0;
+  let loveCreated = 0;
+  let lovePhaseStarted = false;
+
+  function appendTiles(grid, message, count) {
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+      const tile = document.createElement("div");
+      tile.className = "tile";
+      tile.textContent = message;
+      fragment.appendChild(tile);
+    }
+    grid.appendChild(fragment);
+  }
+
+  function loadNextBatch() {
+    if (sorryCreated < sorryLimit) {
+      const amount = Math.min(batchSize, sorryLimit - sorryCreated);
+      appendTiles(sorryGrid, "I'm sorry, Mumma ❤️", amount);
+      sorryCreated += amount;
+      return;
+    }
+
+    lovePhaseStarted = true;
+    if (loveCreated < loveLimit) {
+      const amount = Math.min(batchSize, loveLimit - loveCreated);
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < amount; i++) {
+        const tile = document.createElement("div");
+        tile.className = "tile";
+        tile.textContent = (loveCreated + i) % 2 === 0
+          ? "I love mumma ❤️😘"
+          : "I love you Bangaraaa 😘😘";
+        fragment.appendChild(tile);
+      }
+      loveGrid.appendChild(fragment);
+      loveCreated += amount;
+    }
+
+    if (sorryCreated >= sorryLimit && loveCreated >= loveLimit) {
+      document.getElementById("scrollHint").textContent = "All my love, always and forever. ❤️";
+      observer.disconnect();
+    }
+  }
+
+  function loadOnScroll() {
+    // Fill in small batches near the bottom, rather than creating millions of
+    // elements at once (which would freeze a phone or laptop).
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 900) {
+      loadNextBatch();
+    }
+  }
+
+  // Start with a visible batch of apologies.
+  loadNextBatch();
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some(entry => entry.isIntersecting)) loadNextBatch();
+  }, { rootMargin: "700px 0px" });
+  observer.observe(document.getElementById("loadSentinel"));
+
+  window.addEventListener("scroll", loadOnScroll, { passive: true });
+  document.getElementById("moreBtn").addEventListener("click", () => {
+    for (let i = 0; i < 5; i++) loadNextBatch();
+    makeHearts(22);
+  });
+
+  function makeHearts(amount) {
+    for (let i = 0; i < amount; i++) {
+      const heart = document.createElement("span");
+      heart.className = "heart-pop";
+      heart.textContent = ["💗", "💖", "💕", "🌸", "❤️"][i % 5];
+      heart.style.left = (window.innerWidth / 2 + (Math.random() - .5) * 120) + "px";
+      heart.style.top = (window.innerHeight * .55 + (Math.random() - .5) * 80) + "px";
+      heart.style.setProperty("--x", ((Math.random() - .5) * window.innerWidth) + "px");
+      heart.style.setProperty("--y", (-100 - Math.random() * window.innerHeight * .55) + "px");
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1600);
+    }
+  }
+
+  document.getElementById("surpriseBtn").addEventListener("click", () => {
+    document.getElementById("surprise").classList.add("show");
+    makeHearts(45);
+  });
+  document.getElementById("moreHearts").addEventListener("click", () => makeHearts(55));
+})();
+</script>
+</body>
+</html>
